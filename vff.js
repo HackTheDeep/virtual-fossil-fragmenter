@@ -23,7 +23,7 @@ scene.add( light );
 
 resetCamera();
 
-var geometry;
+var geometry, mesh, localPlane, localPlane2;
 var loader = new THREE.STLLoader();
 loader.load( './models/AMNH-FI-101479_M21282-40430__cephalon.stl', function ( loadedGeometry ) {
     geometry = loadedGeometry;
@@ -45,10 +45,10 @@ function getRandomClippingPlane() {
 }
 
 function buildObject(){
-    var localPlane = getRandomClippingPlane();
-    var localPlane2 = getRandomClippingPlane();
+    localPlane = getRandomClippingPlane();
+    localPlane2 = getRandomClippingPlane();
     var material = new THREE.MeshLambertMaterial( { color: 0xE3DAC9, clippingPlanes: [localPlane, localPlane2]} );
-    var mesh = new THREE.Mesh( geometry, material);
+    mesh = new THREE.Mesh( geometry, material);
     mesh.scale.set(0.5, 0.5, 0.5);
     var rotationX = Math.random() > 0.5 ? 0 : Math.PI;
     var rotationY = Math.random() * 2 * Math.PI;
@@ -65,6 +65,32 @@ function render() {
     renderer.render( scene, camera );
     var imgData = renderer.domElement.toDataURL('image/png');
     saveImageButton.href = imgData;
+}
+
+/*
+function randomRotate(){
+    var rotationX = Math.random() > 0.5 ? 0 : Math.PI;
+    var rotationY = Math.random() * 2 * Math.PI;
+    var rotationZ = (0.25 * Math.random() - 0.125) * 2 * Math.PI; 
+    mesh.rotation.set(rotationX, rotationY, rotationZ);
+}
+*/
+
+function randomRotateAndRender(){
+    scene.remove(scene.children[2]); 
+    var rotationX = Math.random() > 0.5 ? 0 : Math.PI;
+    var rotationY = Math.random() * 2 * Math.PI;
+    var rotationZ = (0.25 * Math.random() - 0.125) * 2 * Math.PI;
+    var eulerAngle = new THREE.Euler(rotationX, rotationY, rotationZ, 'XYZ');
+    var rotationMatrix = (new THREE.Matrix4()).makeRotationFromEuler(eulerAngle);
+    localPlane.applyMatrix4(rotationMatrix);
+    localPlane2.applyMatrix4(rotationMatrix);
+    var material = new THREE.MeshLambertMaterial( { color: 0xE3DAC9, clippingPlanes: [localPlane, localPlane2]} );
+    mesh = new THREE.Mesh( geometry, material);
+    mesh.scale.set(0.5, 0.5, 0.5);
+    mesh.setRotationFromEuler(eulerAngle);
+    scene.add( mesh );
+    render();
 }
 
 function resetCamera(){
