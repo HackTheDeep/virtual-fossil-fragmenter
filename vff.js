@@ -1,6 +1,8 @@
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, 1, 0.1, 1000 );
 
+var isMouseDown = false;
+
 var renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.localClippingEnabled = true;
 renderer.setSize(500, 500 );
@@ -19,8 +21,7 @@ var light = new THREE.DirectionalLight( 0xffffff, 1 );
 light.position.set( 0, 1, 0 ).normalize();
 scene.add( light );
 
-camera.position.set(0, 10, 0)
-camera.lookAt(0, 0, 0);
+resetCamera();
 
 var geometry;
 var loader = new THREE.STLLoader();
@@ -57,14 +58,35 @@ function buildObject(){
 
 var saveImageButton = document.getElementById("save-image-btn");
 function render() {
+    if (isMouseDown){
+        requestAnimationFrame(render);
+    }
     renderer.render( scene, camera );
     var imgData = renderer.domElement.toDataURL('image/png');
     saveImageButton.href = imgData;
 }
 
+function resetCamera(){
+    orbit.reset();
+    camera.position.set(0, 10, 0)
+    camera.lookAt(0, 0, 0);
+}
+
 function refresh(){
     scene.remove(scene.children[2]); 
     render();
+    resetCamera();
     buildObject();
     render();
 }
+
+document.addEventListener("mousedown", function(e){
+    isMouseDown = true;
+    render();
+});
+
+
+document.addEventListener("mouseup", function(e){
+    isMouseDown = false;
+});
+
