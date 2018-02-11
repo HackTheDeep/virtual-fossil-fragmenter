@@ -1,9 +1,9 @@
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+var camera = new THREE.PerspectiveCamera( 75, 1, 0.1, 1000 );
 
 var renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.localClippingEnabled = true;
-renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.setSize(500, 500 );
 document.body.appendChild( renderer.domElement );
 
 //add orbit control
@@ -39,6 +39,7 @@ loader.load( './models/AMNH-FI-101479_M21282-40430__cephalon.stl', function ( lo
         //mesh.position.set(pos[0], pos[1], pos[2]);
         meshes.push(mesh);
         scene.add( mesh );
+        render();
     //}
 });
 
@@ -70,8 +71,7 @@ function getPositions(){
 */
 
 var getImageData = true;
-function animate() {
-    requestAnimationFrame( animate );
+function render() {
     renderer.render( scene, camera );
     if (meshes.length > 0 && getImageData){
         imgData = renderer.domElement.toDataURL();
@@ -79,5 +79,4 @@ function animate() {
         getImageData = false;
     }
 }
-animate();
 
