@@ -50,9 +50,10 @@ function buildObject(){
     var material = new THREE.MeshLambertMaterial( { color: 0xE3DAC9, clippingPlanes: [localPlane, localPlane2]} );
     var mesh = new THREE.Mesh( geometry, material);
     mesh.scale.set(0.5, 0.5, 0.5);
+    var rotationX = Math.random() > 0.5 ? 0 : Math.PI;
     var rotationY = Math.random() * 2 * Math.PI;
     var rotationZ = (0.25 * Math.random() - 0.125) * 2 * Math.PI; 
-    mesh.rotation.set(0, rotationY, rotationZ);
+    mesh.rotation.set(rotationX, rotationY, rotationZ);
     scene.add( mesh );
 }
 
