@@ -4,7 +4,8 @@ var camera = new THREE.PerspectiveCamera( 75, 1, 0.1, 1000 );
 var renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.localClippingEnabled = true;
 renderer.setSize(500, 500 );
-document.body.insertBefore( renderer.domElement , document.body.firstChild);
+var container = document.getElementById("container");
+container.appendChild( renderer.domElement);
 
 //add orbit control
 const orbit = new THREE.OrbitControls(camera, renderer.domElement);
