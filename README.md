@@ -19,7 +19,8 @@ Sean McGuffee, Sophia van Valkenburg, Teodora Szasz, and Luis Ibanez
    * On the command line, `cd` to the root of this project.
    * Run using `$ http-server . ` (optional argument `-p <port>` is port number. default is 8080.)
 3. Open `localhost:8080` to view 3D model fragment
-4. Click `Refresh` button to change the fragment
-5. Click `Save Image` to save the current fragment to your computer
+4. Make sure you have downloaded the [.stl model files](http://www.morphosource.org/Detail/ProjectDetail/Show/project_id/447) and placed them in a `models` directory in the project root
+5. Click `Refresh` button to change the fragment
+6. Click `Save Image` to save the current fragment to your computer
 
 
