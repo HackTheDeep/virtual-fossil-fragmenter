@@ -12,6 +12,7 @@ Sean McGuffee, Sophia van Valkenburg, Teodora Szasz, and Luis Ibanez
 
 # Fragmenter UI Tool
 
+## How to Build & Run
 1. Clone this repo
 2. Run a local server using the root of this project
    * [`http-server`](https://www.npmjs.com/package/http-server) is an easy-to-use local server
