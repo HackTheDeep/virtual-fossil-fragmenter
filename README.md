@@ -31,7 +31,7 @@ Sean McGuffee, Sophia van Valkenburg, Teodora Szasz, and Luis Ibanez
 ## Future Improvements
 * Autogenerate more than 5 fragments. Possibly allow the user to specify how many fragments they want to generate, and specify for which models. Download zip file instead of individual images.
 * Use a better fragmentation algorithm (currently it just uses clipping planes). [Voronoi Shattering?](https://www.joesfer.com/?p=60) Ideally it would fragment the fossils in a more "realistic" way, like breaking off at "weak" points.
-* Ability to upload model
+* Ability to upload model (if we want them to be persistent across sessions, would need to use storage e.g. Amazon S3)
 * Is a web application really the best format for the tool? Could a desktop application be better?
   * Web application advantages: Easy to use by multiple people, cross-platform portability, easy to maintain, less complicated setup
   * Desktop application advantages: More powerful & faster capabilities, don't have to deal with uploading or downloading models
