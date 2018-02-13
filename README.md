@@ -36,3 +36,4 @@ Sean McGuffee, Sophia van Valkenburg, Teodora Szasz, and Luis Ibanez
 * Is a web application really the best format for the tool? Could a desktop application be better?
   * Web application advantages: Easy to use by multiple people, cross-platform portability, easy to maintain, less complicated setup
   * Desktop application advantages: More powerful & faster capabilities, don't have to deal with uploading or downloading models
+* Look into VTK for solutions to this problem: https://www.vtk.org/modeling/
